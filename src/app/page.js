@@ -9,9 +9,9 @@ export default function RandomUserPage() {
   const [users, setUsers] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [genAmount, setGenAmount] = useState(localStorage.getItem("amount"));
+  localStorage.setItem("amount", genAmount);
 
   const generateBtnOnClick = async () => {
-    localStorage.setItem("amount", genAmount);
     setIsLoading(true);
     const resp = await axios.get(
       `https://randomuser.me/api/?results=${genAmount}`
@@ -53,6 +53,7 @@ export default function RandomUserPage() {
             imgUrl={index.imgUrl}
             address={index.address}
             email={index.email}
+            key={index.email}
           />
         ))}
     </div>
