@@ -6,17 +6,21 @@ import { useEffect, useState } from "react";
 
 export default function RandomUserPage() {
   //user = null or array of object
-
-  const [isFirstLoad, setIsFirstLoad] = useState(true);
+  const [isFirstLoad, setisFirstLoad] = useState(true);
   const [users, setUsers] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [genAmount, setGenAmount] = useState(1);
   useEffect(() => {
+    if (isFirstLoad) {
+      setisFirstLoad(false);
+      return;
+    }
     localStorage.setItem("amout", genAmount);
   }, [genAmount]);
+
   useEffect(() => {
-    const number = localStorage.getItem("amout");
-    setGenAmount(number);
+    const loadedTasks = localStorage.getItem("amout");
+    setGenAmount(loadedTasks);
   }, []);
 
   const generateBtnOnClick = async () => {
