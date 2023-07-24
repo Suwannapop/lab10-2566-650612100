@@ -2,15 +2,14 @@
 import { UserCard } from "@/components/UserCard";
 import { cleanUser } from "@/libs/cleanUser";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function RandomUserPage() {
   //user = null or array of object
   const [users, setUsers] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [genAmount, setGenAmount] = useState(localStorage.getItem("amount"));
-  localStorage.setItem("amount", genAmount);
-
+  const [genAmount, setGenAmount] = useState(localStorage.getItem("amout"));
+  localStorage.setItem("amout", genAmount);
   const generateBtnOnClick = async () => {
     setIsLoading(true);
     const resp = await axios.get(
